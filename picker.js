@@ -1,4 +1,4 @@
-var data = {
+var cpicker_data = {
 	"AF": "Afghanistan",
 	"AX": "Åland Islands",	
 	"AL": "Albania",
@@ -256,9 +256,17 @@ var data = {
 	"ZW": "Zimbabwe"	
 };
 
+var cpicker_prop = {
+	selector: ".country-picker",
+	btnClass: "btn btn-outline-primary mr-1 mb-1",
+	btnSelectedClass: "btn btn-primary mr-1 mb-1",
+	imgRoot: "",
+	imgClass: "mr-1"
+};
+
 $(document).ready(function(){
 	
-	$.each($(".country-picker"),function(k,v){
+	$.each($(cpicker_prop.selector),function(k,v){
 		var id = $(v).attr("id");
 
 		var selectedCountry = "";
@@ -298,16 +306,16 @@ $(document).ready(function(){
 function doSearch(term,area) {
 	clearSearch(area);
 	var found = 0;
-	$.each(data,function(k,v){
+	$.each(cpicker_data,function(k,v){
 		if ( v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(term.toLowerCase()) !== -1 ) {
 			found++;
 			$("#" + area).append(
-				$("<BUTTON></BUTTON>").attr("type","button").addClass("btn btn-outline-primary mr-1 mb-1").html(v).attr("data-k",k).prepend(
-					$("<IMG></IMG>").attr("src","img/"+k+".png").addClass("mr-1")
+				$("<BUTTON></BUTTON>").attr("type","button").addClass(cpicker_prop.btnClass).addClass("btn-cpicker").html(v).attr("cpicker_data-k",k).prepend(
+					$("<IMG></IMG>").attr("src",cpicker_prop.imgRoot + "img/"+k+".png").addClass(cpicker_prop.imgClass)
 				).on("click",function(){
 					$("#" + area.replace("-pickarea","")).val(k);
-					$("#" + area + " .btn-primary").removeClass("btn-primary").addClass("btn-outline-primary");
-					$(this).removeClass("btn-outline-primary").addClass("btn-primary");
+					$("#" + area + " .btn-cpicker").removeClass(cpicker_prop.btnSelectedClass).addClass(cpicker_prop.btnClass).removeClass("btn-cpicker-selected");
+					$(this).removeClass(cpicker_prop.btnClass).addClass(cpicker_prop.btnSelectedClass).addClass("btn-cpicker-selected");
 				})
 			)
 		}
@@ -318,7 +326,7 @@ function doSearch(term,area) {
 }
 
 function clearSearch(area) {
-	$("#" + area + " .btn-outline-primary").remove();
+	$("#" + area + " .btn-cpicker:not(.btn-cpicker-selected)").remove();
 }
 
 function noResults(area) {
@@ -326,6 +334,7 @@ function noResults(area) {
 }
 
 function findResult(code,area) {
-	doSearch(data[code],area);
-	$("#" + area).find("[data-k='"+code+"']").click();
+	doSearch(cpicker_data[code],area);
+	$("#" + area).find("[cpicker_data-k='"+code+"']").click();
 }
+
