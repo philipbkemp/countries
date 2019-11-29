@@ -286,25 +286,25 @@ $(document).ready(function(){
 			search.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 			if ( search.length >= 3 ) {
 				if ( $(this).data().prev !== search ) {
-					doSearch(search,pickerArea);
+					cpickerDoSearch(search,pickerArea);
 				}
 			} else {
-				clearSearch(pickerArea);
+				cpickerClearSearch(pickerArea);
 			}
 			$(this).data().prev = search;
 		});
 
 		if ( selectedCountry === "" ) {
-			noResults(pickerArea);
+			cpickerNoResults(pickerArea);
 		} else {
-			findResult(selectedCountry,pickerArea);
+			cpickerFindResult(selectedCountry,pickerArea);
 		}
 	});
 
 });
 
-function doSearch(term,area) {
-	clearSearch(area);
+function cpickerDoSearch(term,area) {
+	cpickerClearSearch(area);
 	var found = 0;
 	$.each(cpicker_data,function(k,v){
 		if ( v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(term.toLowerCase()) !== -1 ) {
@@ -321,20 +321,20 @@ function doSearch(term,area) {
 		}
 	});
 	if ( found === 0 ) {
-		noResults(area);
+		cpickerNoResults(area);
 	}
 }
 
-function clearSearch(area) {
+function cpickerClearSearch(area) {
 	$("#" + area + " .btn-cpicker:not(.btn-cpicker-selected)").remove();
 }
 
-function noResults(area) {
+function cpickerNoResults(area) {
 	console.log("no results for " + area);
 }
 
-function findResult(code,area) {
-	doSearch(cpicker_data[code],area);
+function cpickerFindResult(code,area) {
+	cpickerDoSearch(cpicker_data[code],area);
 	$("#" + area).find("[cpicker_data-k='"+code+"']").click();
 }
 
