@@ -276,7 +276,7 @@ $(document).ready(function(){
 		$(v).keyup(function(){
 			var search = $(this).val();
 			search.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-			if ( search.length >= 0 ) {
+			if ( search.length >= 3 ) {
 				if ( $(this).data().prev !== search ) {
 					doSearch(search,pickerArea);
 				}
