@@ -256,6 +256,13 @@ $(document).ready(function(){
 	
 	$.each($(".country-picker"),function(k,v){
 		var id = $(v).attr("id");
+
+		var selectedCountry = "";
+		if ( $(v).val() !== "" ) {
+			selectedCountry = $(v).val();
+			$(v).val("");
+		}
+
 		$("#"+ id).attr("id",id + "-search").attr("name",id+"-search");
 		$('label[for="' + id + '"]').attr("for",id+"-search");
 		var pickerArea = id + "-pickarea";
@@ -274,7 +281,12 @@ $(document).ready(function(){
 			}
 			$(this).data().prev = search;
 		});
-		noResults(pickerArea);
+
+		if ( selectedCountry === "" ) {
+			noResults(pickerArea);
+		} else {
+			findResult(selectedCountry,pickerArea);
+		}
 	});
 
 });
@@ -286,7 +298,7 @@ function doSearch(term,area) {
 		if ( v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(term.toLowerCase()) !== -1 ) {
 			found++;
 			$("#" + area).append(
-				$("<BUTTON></BUTTON>").attr("type","button").addClass("btn btn-outline-primary mr-1 mb-1").html(v).prepend(
+				$("<BUTTON></BUTTON>").attr("type","button").addClass("btn btn-outline-primary mr-1 mb-1").html(v).attr("data-k",k).prepend(
 					$("<IMG></IMG>").attr("src","img/"+k+".png").addClass("mr-1")
 				).on("click",function(){
 					$("#" + area.replace("-pickarea","")).val(k);
@@ -307,4 +319,9 @@ function clearSearch(area) {
 
 function noResults(area) {
 	console.log("no results for " + area);
+}
+
+function findResult(code,area) {
+	doSearch(data[code],area);
+	$("#" + area).find("[data-k='"+code+"']").click();
 }

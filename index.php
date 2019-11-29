@@ -2,6 +2,12 @@
 
 	include "factory.php";
 
+	$selectedCountryCode = "";
+
+	if ( isset($_POST["go"]) ) {
+		$selectedCountryCode = $_POST["egone"];
+	}
+
 ?>
 
 <!doctype html>
@@ -39,7 +45,7 @@
 						<label for="egone">Start typing:</label>
 					</div>
 					<div class="col-3">
-						<input type="text" class="form-control country-picker" name="egone" id="egone" value="" />
+						<input type="text" class="form-control country-picker" name="egone" id="egone" value="<?php print $selectedCountryCode; ?>" />
 					</div>
 					<div class="col pt-1" id="egone-pickarea"></div>
 					<div class="col-1">
