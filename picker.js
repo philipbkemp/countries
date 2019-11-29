@@ -1,10 +1,10 @@
 var data = {
-	"AD": "Andorra",
 	"AE": "United Arab Emirates",
 	"AF": "Afghanistan",
 	"AG": "Antigua and Barbuda",
 	"AI": "Anguilla",
 	"AL": "Albania",
+	"AN": "Andorra",
 	"AM": "Armenia",
 	"AO": "Angola",
 	"AQ": "Antarctica",
