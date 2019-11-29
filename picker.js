@@ -310,7 +310,7 @@ function cpickerDoSearch(term,area) {
 		if ( v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(term.toLowerCase()) !== -1 ) {
 			found++;
 			$("#" + area).append(
-				$("<BUTTON></BUTTON>").attr("type","button").addClass(cpicker_prop.btnClass).addClass("btn-cpicker").html(v).attr("cpicker_data-k",k).prepend(
+				$("<BUTTON></BUTTON>").attr("type","button").addClass(cpicker_prop.btnClass).addClass("btn-cpicker").html(cpickerHighlight(term,v)).attr("cpicker_data-k",k).prepend(
 					$("<IMG></IMG>").attr("src",cpicker_prop.imgRoot + "img/"+k+".png").addClass(cpicker_prop.imgClass)
 				).on("click",function(){
 					$("#" + area.replace("-pickarea","")).val(k);
@@ -346,4 +346,10 @@ function cpickerProperties(obj) {
 		imgRoot: obj.imgRoot ? obj.imgRoot : cpicker_prop.imgRoot,
 		imgClass: obj.imgClass ? obj.imgClass : cpicker_prop.imgClass
 	};
+}
+
+function cpickerHighlight(search,value) {
+	var regEx = new RegExp(search,"gi");
+	var newVal = value.replace(regEx, "<strong>$&</strong>");
+	return newVal;
 }
