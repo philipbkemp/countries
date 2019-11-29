@@ -249,7 +249,11 @@ var data = {
 	"ZM": "Zambia",
 	"ZW": "Zimbabwe",
 	"_canaries": "Canary Islands",
-	"_caribbean": "Caribbean"
+	"_caribbean": "Caribbean",
+	"_england": "England",
+	"_scotland": "Scotland",
+	"_wales": "Wales",
+	"_northern-ireland": "Northern Ireland"
 };
 
 $(document).ready(function(){
