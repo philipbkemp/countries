@@ -246,7 +246,7 @@ var cpicker_data = {
 	"UZ": "Uzbekistan",
 	"VU": "Vanuatu",
 	"VA": "Vatican City",
-	"VE": "Venezuela (Bolivarian Republic of)",
+	"VE": "Venezuela",
 	"VN": "Vietnam",
 	"_wales": "Wales",
 	"WF": "Wallis and Futuna",
