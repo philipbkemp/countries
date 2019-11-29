@@ -61,6 +61,9 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 		<script src="picker.js"></script>
+		<script>
+			cpickerProperties({btnClass:"btn btn-outline-secondary mr-1 mb-1"});
+		</script>
 
 	</body>
 </html>

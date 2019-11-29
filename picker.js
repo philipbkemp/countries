@@ -338,3 +338,12 @@ function cpickerFindResult(code,area) {
 	$("#" + area).find("[cpicker_data-k='"+code+"']").click();
 }
 
+function cpickerProperties(obj) {
+	cpicker_prop = {
+		selector: obj.selector ? obj.selector : cpicker_prop.selector,
+		btnClass: obj.btnClass ? obj.btnClass : cpicker_prop.btnClass,
+		btnSelectedClass: obj.btnSelectedClass ? obj.btnSelectedClass : cpicker_prop.btnSelectedClass,
+		imgRoot: obj.imgRoot ? obj.imgRoot : cpicker_prop.imgRoot,
+		imgClass: obj.imgClass ? obj.imgClass : cpicker_prop.imgClass
+	};
+}
