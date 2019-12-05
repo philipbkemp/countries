@@ -275,7 +275,11 @@ foreach ($data as $c => $v) {
 }
 
 function getCountryFromCode($code) {
-	return $GLOBALS["codes"][$code];
+	if ( isset($GLOBALS["codes"][$code]) ) {
+		return $GLOBALS["codes"][$code];
+	} else {
+		return "Unknown country";
+	}
 }
 
 ?>

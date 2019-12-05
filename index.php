@@ -56,7 +56,7 @@
 
 			<hr />
 
-			<div class="row mt-1 mb-5">
+			<div class="row mt-1">
 				<div class="col-3 pt-2">
 					getCountryFromCode("LUX")
 				</div>
@@ -64,16 +64,14 @@
 					<input type="text" readonly class="form-control" value="<?php print getCountryFromCode('LUX'); ?>" />
 				</div>
 			</div>
-			<!--
-			<div class="row mt-1 mb-5">
+			<div class="row mt-1">
 				<div class="col-3 pt-2">
 					getCountryFromCode("XXX")
 				</div>
 				<div class="col">
-					<input type="text" readonly class="form-control" value="<?php /*print getCountryFromCode('XXX');*/ ?>" />
+					<input type="text" readonly class="form-control" value="<?php print getCountryFromCode('XXX'); ?>" />
 				</div>
 			</div>
-			-->
 
 		</div>
 

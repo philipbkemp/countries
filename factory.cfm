@@ -263,7 +263,12 @@
 	<cffunction name="getCountryFromCode" returnType="string">
 		<cfargument name="code" type="string" required="true" />
 
-		<cfreturn data[code] />
+		<cfif structKeyExists(data,code)>
+			<cfreturn data[code] />
+		<cfelse>
+			<cfreturn "Unknown country" />
+		</cfif>
+		
 	</cffunction>
 
 </cfsilent>

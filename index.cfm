@@ -56,7 +56,7 @@
 
 				<hr />
 
-				<div class="row mt-1 mb-5">
+				<div class="row mt-1">
 					<div class="col-3 pt-2">
 						getCountryFromCode("LUX")
 					</div>
@@ -64,8 +64,7 @@
 						<input type="text" readonly class="form-control" value="#getCountryFromCode('LUX')#" />
 					</div>
 				</div>
-				<!---
-				<div class="row mt-1 mb-5">
+				<div class="row mt-1">
 					<div class="col-3 pt-2">
 						getCountryFromCode("XXX")
 					</div>
@@ -73,7 +72,6 @@
 						<input type="text" readonly class="form-control" value="#getCountryFromCode('XXX')#" />
 					</div>
 				</div>
-				--->
 			</cfoutput>
 
 		</div>
