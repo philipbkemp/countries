@@ -43,3 +43,15 @@ The ID of the DIV area for picking the Country must have the same ID as the INPU
 | selector          | ```".country-picker"```                   | Selector to find all elements that use this code |
 | showFlags | ```true``` | Whether or not to show the flags in the selection button |
 | showMoreText | ```"+{count}"``` | Text to show on the "more results" button.<br /><br />```{count}``` is replaced with the number of additional results |
+
+## No JavaScript?
+
+There is a method ```getCountryDropDown``` which can be used as follows that will allow you to have something for those without JavaScript. You would need to hide the JavaScript version and show this version according to your own styles and settings.
+
+```html
+<select name="egTwo" class="form-control">
+       <?php print getCountryDropDown(); ?>
+</select>
+```
+
+The currently selected value can be passed, or an empty string, to add the ```selected``` attribute to the OPTION tag of the chosen country.
