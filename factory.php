@@ -282,4 +282,14 @@ function getCountryFromCode($code) {
 	}
 }
 
+function getCountryDropDown($selected) {
+	$opts = "<option value=''></option>";
+
+	foreach ( $GLOBALS["countries"] as $k=>$v ) {
+		$opts .= "<option value='".$v."' ".($selected==$v ? 'selected' : '').">".$k."</option>";
+	}
+
+	return $opts;
+}
+
 ?>

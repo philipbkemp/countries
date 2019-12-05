@@ -73,6 +73,28 @@
 				</div>
 			</div>
 
+			<hr />
+
+			<div class="row mt-1">
+				<div class="col-3 pt-2">
+					getCountryDropDown()
+				</div>
+				<div class="col">
+					<select name="egtwo" class="form-control">
+						<?php print getCountryDropDown(); ?>
+					</select>
+				</div>
+			</div><div class="row mt-1">
+				<div class="col-3 pt-2">
+					getCountryDropDown("ITA")
+				</div>
+				<div class="col">
+					<select name="egthree" class="form-control">
+						<?php print getCountryDropDown("ITA"); ?>
+					</select>
+				</div>
+			</div>
+
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

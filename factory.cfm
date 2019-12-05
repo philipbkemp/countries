@@ -260,6 +260,8 @@
 		"ZWE" = "Zimbabwe"
 	} />
 
+	<cfset countries = structSort(data,"text","asc") />
+
 	<cffunction name="getCountryFromCode" returnType="string">
 		<cfargument name="code" type="string" required="true" />
 
@@ -269,6 +271,18 @@
 			<cfreturn "Unknown country" />
 		</cfif>
 		
+	</cffunction>
+
+	<cffunction name="getCountryDropDown" returnType="string">
+		<cfargument name="selected" type="string" required="false" default="" />
+
+		<cfset LOCAL.opts = '<option value=""></option">' />
+
+		<cfloop array="#countries#" index="c">
+			<cfset LOCAL.opts &= '<option value="' & c & '" ' & (ARGUMENTS.selected eq c ? 'selected' : '') & '>' & data[c] & '</option">' />
+		</cfloop>
+
+		<cfreturn LOCAL.opts />
 	</cffunction>
 
 </cfsilent>
