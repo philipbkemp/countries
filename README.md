@@ -39,4 +39,6 @@ The ID of the DIV area for picking the Country must have the same ID as the INPU
 | imgClass          | ```"mr-1"```                              | What classes are attached to the flag image |
 | imgHeight         | ```"26px"```                              | How tall the flag images should be |
 | imgRoot           | ```""```                                  | Root folder to make sure flag images are found |
+| maxResults | ```3``` | Maximum number of results to display
 | selector          | ```".country-picker"```                   | Selector to find all elements that use this code |
+| showMoreText | ```"+{count}"``` | Text to show on the "more results" button.<br /><br />```{count}``` is replaced with the number of additional results |
