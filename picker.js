@@ -262,8 +262,11 @@ var cpicker_prop = {
 	selector: ".country-picker",
 	btnClass: "btn btn-outline-primary mr-1 mb-1",
 	btnSelectedClass: "btn btn-primary mr-1 mb-1",
+	clearHtml: "X",
+	clearClass: "ml-2 badge badge-secondary p-2",
 	imgRoot: "",
-	imgClass: "mr-1"
+	imgClass: "mr-1",
+	imgHeight: "26px"
 };
 
 $(document).ready(function(){
@@ -316,11 +319,21 @@ function cpickerDoSearch(term,area) {
 			found++;
 			$("#" + area).append(
 				$("<BUTTON></BUTTON>").attr("type","button").addClass(cpicker_prop.btnClass).addClass("btn-cpicker").html(cpickerHighlight(term,v)).attr("cpicker_data-k",k).prepend(
-					$("<IMG></IMG>").attr("src",cpicker_prop.imgRoot + "img/"+k+".png").addClass(cpicker_prop.imgClass)
+					$("<IMG></IMG>").attr("src",cpicker_prop.imgRoot + "img/"+k+".png").addClass(cpicker_prop.imgClass).css("height",cpicker_prop.imgHeight)
 				).on("click",function(){
-					$("#" + area.replace("-pickarea","")).val(k);
-					$("#" + area + " .btn-cpicker").removeClass(cpicker_prop.btnSelectedClass).addClass(cpicker_prop.btnClass).removeClass("btn-cpicker-selected");
-					$(this).removeClass(cpicker_prop.btnClass).addClass(cpicker_prop.btnSelectedClass).addClass("btn-cpicker-selected");
+					if ( $(this).find("span.cpicker_clear").length === 0 ) {
+						$("span.cpicker_clear").remove();
+						$("#" + area.replace("-pickarea","")).val(k);
+						$("#" + area + " .btn-cpicker").removeClass(cpicker_prop.btnSelectedClass).addClass(cpicker_prop.btnClass).removeClass("btn-cpicker-selected");
+						$(this).removeClass(cpicker_prop.btnClass).addClass(cpicker_prop.btnSelectedClass).addClass("btn-cpicker-selected");
+						$(this).append(
+							$("<SPAN></SPAN>").html(cpicker_prop.clearHtml).addClass(cpicker_prop.clearClass).addClass("cpicker_clear")
+						)
+					} else {
+						$("span.cpicker_clear").remove();
+						$(this).removeClass(cpicker_prop.btnSelectedClass).addClass(cpicker_prop.btnClass).removeClass("btn-cpicker-selected");
+						$("#" + area.replace("-pickarea","")).val("");
+					}
 				})
 			)
 		}
@@ -348,8 +361,11 @@ function cpickerProperties(obj) {
 		selector: obj.selector ? obj.selector : cpicker_prop.selector,
 		btnClass: obj.btnClass ? obj.btnClass : cpicker_prop.btnClass,
 		btnSelectedClass: obj.btnSelectedClass ? obj.btnSelectedClass : cpicker_prop.btnSelectedClass,
+		clearHtml: obj.clearHtml ? obj.clearHtml : cpicker_prop.clearHtml,
+		clearClass: obj.clearClass ? obj.clearClass : cpicker_prop.clearClass,
 		imgRoot: obj.imgRoot ? obj.imgRoot : cpicker_prop.imgRoot,
-		imgClass: obj.imgClass ? obj.imgClass : cpicker_prop.imgClass
+		imgClass: obj.imgClass ? obj.imgClass : cpicker_prop.imgClass,
+		imgHeight: obj.imgHeight ? obj.imgHeight : cpicker_prop.imgHeight
 	};
 }
 
