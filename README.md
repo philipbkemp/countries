@@ -5,7 +5,21 @@
 <script src="picker.js"></script>
 ```
 
-2. Define any custom properties
+2. Include the HTML tag
+```html
+<input type="text"
+       class="form-control country-picker"
+       name="egone"
+       id="egone"
+       value="<?php print $selectedCountryCode; ?>"
+       />
+<div id="egone-pickarea"></div>
+```
+The ```country-picker``` class is the most important, as any INPUT with this class will be turned into the Country Picker search box.
+
+The ID of the DIV area for picking the Country must have the same ID as the INPUT suffixed with ```-pickarea```. This can be styled however you wish.
+
+3. Define any custom properties
 ```html
 <script>
   cpickerProperties({
@@ -14,7 +28,7 @@
 </script>
 ```
 
-3. Define your properties
+4. Define your properties
 
 | Property          | Default                                   | Description |
 | ---               | ---                                       | --- |
