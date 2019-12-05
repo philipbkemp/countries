@@ -54,6 +54,27 @@
 				</div>
 			</form>
 
+			<hr />
+
+			<div class="row mt-1 mb-5">
+				<div class="col-3 pt-2">
+					getCountryFromCode("LUX")
+				</div>
+				<div class="col">
+					<input type="text" readonly class="form-control" value="<?php print getCountryFromCode('LUX'); ?>" />
+				</div>
+			</div>
+			<!--
+			<div class="row mt-1 mb-5">
+				<div class="col-3 pt-2">
+					getCountryFromCode("XXX")
+				</div>
+				<div class="col">
+					<input type="text" readonly class="form-control" value="<?php /*print getCountryFromCode('XXX');*/ ?>" />
+				</div>
+			</div>
+			-->
+
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
