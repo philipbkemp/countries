@@ -259,15 +259,15 @@ var cpicker_data = {
 };
 
 var cpicker_prop = {
-	selector: ".country-picker",
 	btnClass: "btn btn-outline-primary mr-1 mb-1",
 	btnSelectedClass: "btn btn-primary mr-1 mb-1",
-	clearHtml: "X",
 	clearClass: "ml-2 badge badge-secondary p-2",
-	imgRoot: "",
+	clearHtml: "X",
 	imgClass: "mr-1",
 	imgHeight: "20px",
+	imgRoot: "",
 	maxResults: 3,
+	selector: ".country-picker",
 	showMoreText: "+{count}"
 };
 
