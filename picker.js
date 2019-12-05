@@ -309,7 +309,10 @@ function cpickerDoSearch(term,area) {
 	cpickerClearSearch(area);
 	var found = 0;
 	$.each(cpicker_data,function(k,v){
-		if ( v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(term.toLowerCase()) !== -1 ) {
+		if (
+			v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(term.toLowerCase()) !== -1
+			&& $("button[cpicker_data-k='" + k + "']").length === 0
+			) {
 			found++;
 			$("#" + area).append(
 				$("<BUTTON></BUTTON>").attr("type","button").addClass(cpicker_prop.btnClass).addClass("btn-cpicker").html(cpickerHighlight(term,v)).attr("cpicker_data-k",k).prepend(
