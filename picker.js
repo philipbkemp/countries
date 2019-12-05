@@ -357,16 +357,11 @@ function cpickerFindResult(code,area) {
 }
 
 function cpickerProperties(obj) {
-	cpicker_prop = {
-		selector: obj.selector ? obj.selector : cpicker_prop.selector,
-		btnClass: obj.btnClass ? obj.btnClass : cpicker_prop.btnClass,
-		btnSelectedClass: obj.btnSelectedClass ? obj.btnSelectedClass : cpicker_prop.btnSelectedClass,
-		clearHtml: obj.clearHtml ? obj.clearHtml : cpicker_prop.clearHtml,
-		clearClass: obj.clearClass ? obj.clearClass : cpicker_prop.clearClass,
-		imgRoot: obj.imgRoot ? obj.imgRoot : cpicker_prop.imgRoot,
-		imgClass: obj.imgClass ? obj.imgClass : cpicker_prop.imgClass,
-		imgHeight: obj.imgHeight ? obj.imgHeight : cpicker_prop.imgHeight
-	};
+	$.each(obj,function(k,v){
+		if ( cpicker_prop[k] ) {
+			cpicker_prop[k] = v;
+		}
+	});
 }
 
 function cpickerHighlight(search,value) {
