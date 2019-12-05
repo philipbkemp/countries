@@ -388,5 +388,18 @@ function cpickerProperties(obj) {
 function cpickerHighlight(search,value) {
 	var regEx = new RegExp(search,"gi");
 	var newVal = value.replace(regEx, "<strong>$&</strong>");
+
+	// special cases: Åland Islands
+	regEx = new RegExp(search.replace("a","å"),"gi");
+	newVal = newVal.replace(regEx, "<strong>$&</strong>");
+
+	// special cases: Curaçao
+	regEx = new RegExp(search.replace("c","ç"),"gi");
+	newVal = newVal.replace(regEx, "<strong>$&</strong>");
+
+	// special cases: Réunion / Saint Barthélemy
+	regEx = new RegExp(search.replace("e","é"),"gi");
+	newVal = newVal.replace(regEx, "<strong>$&</strong>");
+
 	return newVal;
 }
