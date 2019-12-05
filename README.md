@@ -34,6 +34,9 @@ The ID of the DIV area for picking the Country must have the same ID as the INPU
 | ---               | ---                                       | --- |
 | btnClass          | ```"btn btn-outline-primary mr-1 mb-1"``` | What classes an unselected button would use |
 | btnSelectedClass  | ```"btn btn-primary mr-1 mb-1"```         | What classes the selected button would use |
+| clearHtml         | ```"X"```                                 | What text or markup should be used for the clear SPAN |
+| clearClass        | ```"ml-2 badge badge-secondary p-2"```    | What styles to apply to the clear SPAN |
 | imgClass          | ```"mr-1"```                              | What classes are attached to the flag image |
+| imgHeight         | ```"26px"```                              | How tall the flag images should be |
 | imgRoot           | ```""```                                  | Root folder to make sure flag images are found |
 | selector          | ```".country-picker"```                   | Selector to find all elements that use this code |
