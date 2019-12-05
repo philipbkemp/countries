@@ -268,6 +268,7 @@ var cpicker_prop = {
 	imgRoot: "",
 	maxResults: 3,
 	selector: ".country-picker",
+	showFlags: true,
 	showMoreText: "+{count}"
 };
 
@@ -322,9 +323,14 @@ function cpickerDoSearch(term,area) {
 			found++;
 			if ( shown < cpicker_prop.maxResults || cpicker_prop.maxResults === 0 ) {
 				shown++;
+				if ( cpicker_prop.showFlags ) {
+					$flag = $("<IMG></IMG>").attr("src",cpicker_prop.imgRoot + "img/"+k+".png").addClass(cpicker_prop.imgClass).css("height",cpicker_prop.imgHeight).css("top","-1px").css("position","relative");
+				} else {
+					$flag = "";
+				}
 				$("#" + area).append(
 					$("<BUTTON></BUTTON>").attr("type","button").addClass(cpicker_prop.btnClass).addClass("btn-cpicker").html(cpickerHighlight(term,v)).attr("cpicker_data-k",k).prepend(
-						$("<IMG></IMG>").attr("src",cpicker_prop.imgRoot + "img/"+k+".png").addClass(cpicker_prop.imgClass).css("height",cpicker_prop.imgHeight).css("top","-1px").css("position","relative")
+						$flag
 					).on("click",function(){
 						if ( $(this).find("span.cpicker_clear").length === 0 ) {
 							$("span.cpicker_clear").remove();

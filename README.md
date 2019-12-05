@@ -41,4 +41,5 @@ The ID of the DIV area for picking the Country must have the same ID as the INPU
 | imgRoot           | ```""```                                  | Root folder to make sure flag images are found |
 | maxResults | ```3``` | Maximum number of results to display
 | selector          | ```".country-picker"```                   | Selector to find all elements that use this code |
+| showFlags | ```true``` | Whether or not to show the flags in the selection button |
 | showMoreText | ```"+{count}"``` | Text to show on the "more results" button.<br /><br />```{count}``` is replaced with the number of additional results |
