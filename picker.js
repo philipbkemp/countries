@@ -304,8 +304,6 @@ $(document).ready(function(){
 					$("#" + id + "-search").addClass(cpicker_prop.requiredClassSearch);
 					$("#" + id + "-pickarea").prepend( $("<BR />").addClass("cpicker-req") ).prepend( $("<DIV></DIV>").addClass(cpicker_prop.requiredClassAlert).addClass("cpicker-req").html(cpicker_prop.requiredMessage) );
 					return false;
-				} else {
-					return false;
 				}
 			});
 		}
