@@ -40,6 +40,10 @@ The ID of the DIV area for picking the Country must have the same ID as the INPU
 | imgHeight         | ```"26px"```                              | How tall the flag images should be |
 | imgRoot           | ```""```                                  | Root folder to make sure flag images are found |
 | maxResults | ```3``` | Maximum number of results to display
+| requiredClassAlert | ```"badge badge-danger"``` | Class to add to the alert message if required value is not provided |
+| requiredClassArea | ```"border border-danger"``` | Class to add to the Picking Area if required value is not provided |
+| requiredClassSearch | ```"border border-danger"``` | Class to add to the Search box if required value is not provided |
+| requiredMessage | ```"Please select a country"``` | Text to use if a required value is not provided |
 | selector          | ```".country-picker"```                   | Selector to find all elements that use this code |
 | showFlags | ```true``` | Whether or not to show the flags in the selection button |
 | showMoreText | ```"+{count}"``` | Text to show on the "more results" button.<br /><br />```{count}``` is replaced with the number of additional results |

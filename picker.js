@@ -267,6 +267,10 @@ var cpicker_prop = {
 	imgHeight: "20px",
 	imgRoot: "",
 	maxResults: 3,
+	requiredClassAlert: "badge badge-danger",
+	requiredClassArea: "border border-danger",
+	requiredClassSearch: "border border-danger",
+	requiredMessage: "Please select a country",
 	selector: ".country-picker",
 	showFlags: true,
 	showMoreText: "+{count}"
@@ -282,13 +286,29 @@ $(document).ready(function(){
 			selectedCountry = $(v).val();
 			$(v).val("");
 		}
-
 		$("#"+ id).attr("id",id + "-search").attr("name",id+"-search");
 		$('label[for="' + id + '"]').attr("for",id+"-search");
 		var pickerArea = id + "-pickarea";
 		$("#" + pickerArea).append(
 			$("<INPUT></INPUT>").attr("type","hidden").attr("name",id).attr("id",id)
 		);
+		if ( $("#"+id+"-search").prop("required") ) {
+			$("#"+id).prop("required",true);
+			$("#"+id+"-search").removeAttr("required");
+			$("#"+id).closest("form").on("submit",function(){
+				$("#" + pickerArea).removeClass(cpicker_prop.requiredClassArea);
+				$("#" + id + "-search").removeClass(cpicker_prop.requiredClassSearch);
+				$("#" + id + "-pickarea .cpicker-req").remove();
+				if ( $("#"+id).val() === "" ) {
+					$("#" + pickerArea).addClass(cpicker_prop.requiredClassArea);
+					$("#" + id + "-search").addClass(cpicker_prop.requiredClassSearch);
+					$("#" + id + "-pickarea").prepend( $("<BR />").addClass("cpicker-req") ).prepend( $("<DIV></DIV>").addClass(cpicker_prop.requiredClassAlert).addClass("cpicker-req").html(cpicker_prop.requiredMessage) );
+					return false;
+				} else {
+					return false;
+				}
+			});
+		}
 		$(v).keyup(function(){
 			var search = $(this).val();
 			search.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
