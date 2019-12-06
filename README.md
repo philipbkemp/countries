@@ -5,6 +5,11 @@
 <script src="picker.js"></script>
 ```
 
+Alternatively, use the minified version:
+```html
+<script src="picker.min.js"></script>
+```
+
 2. Include the HTML tag
 ```html
 <input type="text"
