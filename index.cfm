@@ -3,9 +3,13 @@
 <cfsilent>
 
 	<cfset selectedCountryCode = "" />
+	<cfset selectedCountryCodeTwo = "" />
 
-	<cfif structKeyExists(FORM,"go")>
+	<cfif structKeyExists(FORM,"egone")>
 		<cfset selectedCountryCode = FORM.egone />
+	</cfif>
+	<cfif structKeyExists(FORM,"egtwo")>
+		<cfset selectedCountryCodeTwo = FORM.egtwo />
 	</cfif>
 </cfsilent>
 
@@ -48,6 +52,23 @@
 							<input type="text" class="form-control country-picker" name="egone" id="egone" value="#selectedCountryCode#" />
 						</div>
 						<div class="col" id="egone-pickarea"></div>
+						<div class="col-1">
+							<button type="submit" class="btn btn-success" name="go">Save</button>
+						</div>
+					</div>
+				</form>
+
+				<hr />
+
+				<form action="" method="POST">
+					<div class="row mt-1">
+						<div class="col-2 pt-1">
+							<label for="egtwo">What about a required country?</label>
+						</div>
+						<div class="col-3">
+							<input type="text" required class="form-control country-picker" name="egtwo" id="egtwo" value="#selectedCountryCodeTwo#" />
+						</div>
+						<div class="col" id="egtwo-pickarea"></div>
 						<div class="col-1">
 							<button type="submit" class="btn btn-success" name="go">Save</button>
 						</div>
