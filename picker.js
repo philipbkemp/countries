@@ -267,6 +267,7 @@ var cpicker_prop = {
 	imgHeight: "20px",
 	imgRoot: "",
 	maxResults: 3,
+	maxSelectExceeded: "Cannot select more than {count}",
 	noResultsClass: "badge badge-warning",
 	noResultsText: "No results found for {term}",
 	requiredClassAlert: "badge badge-danger",
@@ -360,19 +361,9 @@ function cpickerDoSearch(term,area,exact) {
 					.append( $("<SPAN></SPAN>").addClass("cpicker-v").html(cpickerHighlight(term,v)))
 					.prepend($flag)
 					.on("click",function(){
-						if ( $(this).find("span.cpicker_clear").length === 0 ) {
-							$(this).find("span.cpicker_clear").remove();
-							$("#" + area.replace("-pickarea","")).val(k);
-							$("#" + area + " .btn-cpicker").removeClass(cpicker_prop.btnSelectedClass).addClass(cpicker_prop.btnClass).removeClass("btn-cpicker-selected");
-							$(this).removeClass(cpicker_prop.btnClass).addClass(cpicker_prop.btnSelectedClass).addClass("btn-cpicker-selected");
-							$(this).append(
-								$("<SPAN></SPAN>").html(cpicker_prop.clearHtml).addClass(cpicker_prop.clearClass).addClass("cpicker_clear")
-							)
-						} else {
-							$(this).find("span.cpicker_clear").remove();
-							$(this).removeClass(cpicker_prop.btnSelectedClass).addClass(cpicker_prop.btnClass).removeClass("btn-cpicker-selected");
-							$("#" + area.replace("-pickarea","")).val("");
-						}
+
+						cpicker_handleClick( $(this), area );
+						
 					})
 				)
 			}
@@ -385,10 +376,48 @@ function cpickerDoSearch(term,area,exact) {
 	}
 }
 
+function cpicker_handleClick($btn,area) {
+
+	maxSelect = $("#"+area).data("cpickermax") || 1;
+
+	if ( $btn.hasClass("btn-cpicker-selected") ) {
+		$btn.removeClass(cpicker_prop.btnSelectedClass).addClass(cpicker_prop.btnClass).removeClass("btn-cpicker-selected");
+		$btn.find(".cpicker_clear").remove();
+	} else {
+		if ( maxSelect === 1 ) {
+			$("#"+area+" .btn-cpicker-selected").removeClass(cpicker_prop.btnSelectedClass).addClass(cpicker_prop.btnClass).removeClass("btn-cpicker-selected").find(".cpicker_clear").remove();
+			$btn.removeClass(cpicker_prop.btnClass).addClass(cpicker_prop.btnSelectedClass).addClass("btn-cpicker-selected");
+		} else {
+			if ( $("#"+area+" .btn-cpicker-selected").length === 0 ) {
+				$btn.removeClass(cpicker_prop.btnClass).addClass(cpicker_prop.btnSelectedClass).addClass("btn-cpicker-selected");
+			} else if ( $("#"+area+" .btn-cpicker-selected").length < maxSelect ) {
+				$btn.removeClass(cpicker_prop.btnClass).addClass(cpicker_prop.btnSelectedClass).addClass("btn-cpicker-selected");
+			} else {
+				$("#"+area+" .cpicker-maxexceed").remove();
+				$("#" +area)
+				.append($("<BR />").addClass("cpicker-maxexceed") )
+				.append( $("<DIV></DIV>").addClass(cpicker_prop.requiredClassAlert).addClass("cpicker-maxexceed").html(cpicker_prop.maxSelectExceeded.replace("{count}",maxSelect)) );
+			}
+		}
+	}
+
+	val = [];
+	$.each( $("#"+area+" .btn-cpicker-selected"), function(k,v) {
+		val.push( $(this).attr("cpicker_data-k") );
+
+		$(this).find(".cpicker_clear").remove();
+		$(this).append(
+			$("<SPAN></SPAN>").html(cpicker_prop.clearHtml).addClass(cpicker_prop.clearClass).addClass("cpicker_clear")
+		)
+	});
+	$("#" + area.replace("-pickarea","")).val( val.join("|") );
+}
+
 function cpickerClearSearch(area) {
 	$("#" + area + " .btn-cpicker:not(.btn-cpicker-selected)").remove();
 	$("#" + area + " .cpicker_showmore").remove();
 	$("#" + area + " .cpicker_noresults").remove();
+	$("#" + area + " .cpicker-maxexceed").remove();
 	$.each( 	$("#" + area + " .btn-cpicker-selected strong"), function(k,v) {
 		$(this).replaceWith($(this).html());
 	});
@@ -409,8 +438,11 @@ function cpickerMoreResults(area,notShownCount) {
 }
 
 function cpickerFindResult(code,area) {
-	cpickerDoSearch(cpicker_data[code],area,true);
-	$("#" + area).find("[cpicker_data-k='"+code+"']").click();
+	code = code.split("|");
+	$.each( code, function(k,v) {
+		cpickerDoSearch(cpicker_data[v],area,true);
+		$("#" + area).find("[cpicker_data-k='"+v+"']").click();
+	});
 }
 
 function cpickerProperties(obj) {

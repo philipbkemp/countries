@@ -24,6 +24,8 @@ The ```country-picker``` class is the most important, as any INPUT with this cla
 
 The ID of the DIV area for picking the Country must have the same ID as the INPUT suffixed with ```-pickarea```. This can be styled however you wish.
 
+If you want to allow multiple selection, the ```-pickarea``` DIV element should have the attribute ```data-cpickermax="2"``` (to allow 0, 1, or 2 values to be selected)
+
 3. Define any custom properties
 ```html
 <script>
@@ -45,6 +47,7 @@ The ID of the DIV area for picking the Country must have the same ID as the INPU
 | imgHeight         | ```"26px"```                              | How tall the flag images should be |
 | imgRoot           | ```""```                                  | Root folder to make sure flag images are found |
 | maxResults | ```3``` | Maximum number of results to display
+| maxSelectExceeded | ```"Cannot select more than {count}"``` | Text to show when more than the maximum number of countries have been selected<br /><br />```{count}``` is replaced with the number of currently (maximum) selected countries |
 | noResultsClass | ```"badge badge-warning"``` | Class to add to the message when no results are found |
 | noResultsText | ```"No results found for {term}"``` | Text to show when no results are found<br /><br />```{term}``` is replaced with the search term |
 | requiredClassAlert | ```"badge badge-danger"``` | Class to add to the alert message if required value is not provided |
@@ -53,7 +56,7 @@ The ID of the DIV area for picking the Country must have the same ID as the INPU
 | requiredMessage | ```"Please select a country"``` | Text to use if a required value is not provided |
 | selector          | ```".country-picker"```                   | Selector to find all elements that use this code |
 | showFlags | ```true``` | Whether or not to show the flags in the selection button |
-| showMoreText | ```"+{count}"``` | Text to show on the "more results" button.<br /><br />```{count}``` is replaced with the number of additional results |
+| showMoreText | ```"+{count}"``` | Text to show on the "more results" button<br /><br />```{count}``` is replaced with the number of additional results |
 
 ## No JavaScript?
 

@@ -4,12 +4,16 @@
 
 	$selectedCountryCode = "";
 	$selectedCountryCodeTwo = "";
+	$selectedCountryCodeThree = "";
 
 	if ( isset($_POST["egone"]) ) {
 		$selectedCountryCode = $_POST["egone"];
 	}
 	if ( isset($_POST["egtwo"]) ) {
 		$selectedCountryCodeTwo = $_POST["egtwo"];
+	}
+	if ( isset($_POST["egthree"]) ) {
+		$selectedCountryCodeThree = $_POST["egthree"];
 	}
 
 ?>
@@ -69,6 +73,23 @@
 						<input type="text" required class="form-control country-picker" name="egtwo" id="egtwo" value="<?php print $selectedCountryCodeTwo; ?>" />
 					</div>
 					<div class="col" id="egtwo-pickarea"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-success" name="go">Save</button>
+					</div>
+				</div>
+			</form>
+
+			<hr />
+
+			<form action="" method="POST">
+				<div class="row mt-1">
+					<div class="col-2 pt-1">
+						<label for="egthree">Select up to 2:</label>
+					</div>
+					<div class="col-3">
+						<input type="text" class="form-control country-picker" name="egthree" id="egthree" value="<?php print $selectedCountryCodeThree; ?>" />
+					</div>
+					<div class="col" id="egthree-pickarea" data-cpickermax="2"></div>
 					<div class="col-1">
 						<button type="submit" class="btn btn-success" name="go">Save</button>
 					</div>
