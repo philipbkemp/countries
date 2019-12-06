@@ -267,6 +267,8 @@ var cpicker_prop = {
 	imgHeight: "20px",
 	imgRoot: "",
 	maxResults: 3,
+	noResultsClass: "badge badge-warning",
+	noResultsText: "No results found for {term}",
 	requiredClassAlert: "badge badge-danger",
 	requiredClassArea: "border border-danger",
 	requiredClassSearch: "border border-danger",
@@ -321,7 +323,7 @@ $(document).ready(function(){
 		});
 
 		if ( selectedCountry === "" ) {
-			cpickerNoResults(pickerArea);
+			cpickerNoResults(pickerArea,null);
 		} else {
 			cpickerFindResult(selectedCountry,pickerArea);
 		}
@@ -377,7 +379,7 @@ function cpickerDoSearch(term,area,exact) {
 		}
 	});
 	if ( found === 0 ) {
-		cpickerNoResults(area);
+		cpickerNoResults(area,term);
 	} else if ( found !== shown ) {
 		cpickerMoreResults(area,shown-found);
 	}
@@ -386,13 +388,18 @@ function cpickerDoSearch(term,area,exact) {
 function cpickerClearSearch(area) {
 	$("#" + area + " .btn-cpicker:not(.btn-cpicker-selected)").remove();
 	$("#" + area + " .cpicker_showmore").remove();
+	$("#" + area + " .cpicker_noresults").remove();
 	$.each( 	$("#" + area + " .btn-cpicker-selected strong"), function(k,v) {
 		$(this).replaceWith($(this).html());
 	});
 }
 
-function cpickerNoResults(area) {
-	console.log("no results for " + area);
+function cpickerNoResults(area,term) {
+	if ( term !== "" && term !== null) {
+		$("#" + area).append(
+			$("<SPAN></SPAN>").addClass(cpicker_prop.noResultsClass).addClass("cpicker_noresults").html(cpicker_prop.noResultsText.replace("{term}",term))
+		);
+	}
 }
 
 function cpickerMoreResults(area,notShownCount) {

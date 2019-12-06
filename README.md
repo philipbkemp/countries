@@ -45,6 +45,8 @@ The ID of the DIV area for picking the Country must have the same ID as the INPU
 | imgHeight         | ```"26px"```                              | How tall the flag images should be |
 | imgRoot           | ```""```                                  | Root folder to make sure flag images are found |
 | maxResults | ```3``` | Maximum number of results to display
+| noResultsClass | ```"badge badge-warning"``` | Class to add to the message when no results are found |
+| noResultsText | ```"No results found for {term}"``` | Text to show when no results are found<br /><br />```{term}``` is replaced with the search term |
 | requiredClassAlert | ```"badge badge-danger"``` | Class to add to the alert message if required value is not provided |
 | requiredClassArea | ```"border border-danger"``` | Class to add to the Picking Area if required value is not provided |
 | requiredClassSearch | ```"border border-danger"``` | Class to add to the Search box if required value is not provided |
