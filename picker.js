@@ -313,6 +313,9 @@ $(document).ready(function(){
 
 function cpickerDoSearch(term,area) {
 	cpickerClearSearch(area);
+	$.each( $("#" + area + " .btn-cpicker-selected .cpicker-v"), function(k,v) {
+		$(this).html( cpickerHighlight(term,$(this).html() ) );
+	});
 	var found = 0;
 	var shown = 0;
 	$.each(cpicker_data,function(k,v){
@@ -329,9 +332,10 @@ function cpickerDoSearch(term,area) {
 					$flag = "";
 				}
 				$("#" + area).append(
-					$("<BUTTON></BUTTON>").attr("type","button").addClass(cpicker_prop.btnClass).addClass("btn-cpicker").html(cpickerHighlight(term,v)).attr("cpicker_data-k",k).prepend(
-						$flag
-					).on("click",function(){
+					$("<BUTTON></BUTTON>").attr("type","button").addClass(cpicker_prop.btnClass).addClass("btn-cpicker").attr("cpicker_data-k",k)
+					.append( $("<SPAN></SPAN>").addClass("cpicker-v").html(cpickerHighlight(term,v)))
+					.prepend($flag)
+					.on("click",function(){
 						if ( $(this).find("span.cpicker_clear").length === 0 ) {
 							$("span.cpicker_clear").remove();
 							$("#" + area.replace("-pickarea","")).val(k);
@@ -360,6 +364,9 @@ function cpickerDoSearch(term,area) {
 function cpickerClearSearch(area) {
 	$("#" + area + " .btn-cpicker:not(.btn-cpicker-selected)").remove();
 	$("#" + area + " .cpicker_showmore").remove();
+	$.each( 	$("#" + area + " .btn-cpicker-selected strong"), function(k,v) {
+		$(this).replaceWith($(this).html());
+	});
 }
 
 function cpickerNoResults(area) {
@@ -391,15 +398,15 @@ function cpickerHighlight(search,value) {
 
 	// special cases: Åland Islands
 	regEx = new RegExp(search.replace("a","å"),"gi");
-	newVal = newVal.replace(regEx, "<strong>$&</strong>");
+	newVal = newVal.replace(regEx, "<strong>$&</strong>").replace("<strong><strong>","<strong>").replace("</strong></strong>","</strong>");
 
 	// special cases: Curaçao
 	regEx = new RegExp(search.replace("c","ç"),"gi");
-	newVal = newVal.replace(regEx, "<strong>$&</strong>");
+	newVal = newVal.replace(regEx, "<strong>$&</strong>").replace("<strong><strong>","<strong>").replace("</strong></strong>","</strong>");
 
 	// special cases: Réunion / Saint Barthélemy
 	regEx = new RegExp(search.replace("e","é"),"gi");
-	newVal = newVal.replace(regEx, "<strong>$&</strong>");
+	newVal = newVal.replace(regEx, "<strong>$&</strong>").replace("<strong><strong>","<strong>").replace("</strong></strong>","</strong>");
 
 	return newVal;
 }
