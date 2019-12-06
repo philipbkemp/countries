@@ -59,3 +59,13 @@ There is a method ```getCountryDropDown``` which can be used as follows that wil
 ```
 
 The currently selected value can be passed, or an empty string, to add the ```selected``` attribute to the OPTION tag of the chosen country.
+
+## Factory methods
+
+PHP and ColdFusion factories are provided, that allow some usage outside of JavaScript.
+
+#####```getCountryFromCode(code)```  
+Returns the country name based on the three character ```code``` parameter provided. If no country is matched, an ```Unknown country``` text is provide
+
+##### ```getCountryDropDown(selected)```  
+Returns a string of ```<option>``` tags suitable for inserting inside a ```<select>``` tag in a form. If a ```selected``` parameter is provided and matches any of the countries in the list, that option will be marked as ```selected```
