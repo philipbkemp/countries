@@ -408,7 +408,7 @@ function cpickerFindResult(code,area) {
 
 function cpickerProperties(obj) {
 	$.each(obj,function(k,v){
-		if ( cpicker_prop[k] ) {
+		if ( cpicker_prop[k] !== null) {
 			cpicker_prop[k] = v;
 		}
 	});
