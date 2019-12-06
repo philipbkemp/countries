@@ -359,7 +359,7 @@ function cpickerDoSearch(term,area,exact) {
 					.prepend($flag)
 					.on("click",function(){
 						if ( $(this).find("span.cpicker_clear").length === 0 ) {
-							$("span.cpicker_clear").remove();
+							$(this).find("span.cpicker_clear").remove();
 							$("#" + area.replace("-pickarea","")).val(k);
 							$("#" + area + " .btn-cpicker").removeClass(cpicker_prop.btnSelectedClass).addClass(cpicker_prop.btnClass).removeClass("btn-cpicker-selected");
 							$(this).removeClass(cpicker_prop.btnClass).addClass(cpicker_prop.btnSelectedClass).addClass("btn-cpicker-selected");
@@ -367,7 +367,7 @@ function cpickerDoSearch(term,area,exact) {
 								$("<SPAN></SPAN>").html(cpicker_prop.clearHtml).addClass(cpicker_prop.clearClass).addClass("cpicker_clear")
 							)
 						} else {
-							$("span.cpicker_clear").remove();
+							$(this).find("span.cpicker_clear").remove();
 							$(this).removeClass(cpicker_prop.btnSelectedClass).addClass(cpicker_prop.btnClass).removeClass("btn-cpicker-selected");
 							$("#" + area.replace("-pickarea","")).val("");
 						}
