@@ -343,7 +343,7 @@ function cpickerDoSearch(term,area,exact) {
 				||
 				( exact && v === term )
 			)
-			&& $("button[cpicker_data-k='" + k + "']").length === 0
+			&& $("#"+area+" button[cpicker_data-k='" + k + "']").length === 0
 			) {
 			found++;
 			if ( shown < cpicker_prop.maxResults || cpicker_prop.maxResults === 0 ) {
