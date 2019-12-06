@@ -69,7 +69,7 @@ The currently selected value can be passed, or an empty string, to add the ```se
 
 PHP and ColdFusion factories are provided, that allow some usage outside of JavaScript.
 
-#####```getCountryFromCode(code)```  
+##### ```getCountryFromCode(code)```  
 Returns the country name based on the three character ```code``` parameter provided. If no country is matched, an ```Unknown country``` text is provide
 
 ##### ```getCountryDropDown(selected)```  
