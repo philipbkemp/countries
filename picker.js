@@ -312,7 +312,7 @@ $(document).ready(function(){
 			search.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 			if ( search.length >= 3 ) {
 				if ( $(this).data().prev !== search ) {
-					cpickerDoSearch(search,pickerArea);
+					cpickerDoSearch(search,pickerArea,false);
 				}
 			} else {
 				cpickerClearSearch(pickerArea);
@@ -329,7 +329,7 @@ $(document).ready(function(){
 
 });
 
-function cpickerDoSearch(term,area) {
+function cpickerDoSearch(term,area,exact) {
 	cpickerClearSearch(area);
 	$.each( $("#" + area + " .btn-cpicker-selected .cpicker-v"), function(k,v) {
 		$(this).html( cpickerHighlight(term,$(this).html() ) );
@@ -338,7 +338,11 @@ function cpickerDoSearch(term,area) {
 	var shown = 0;
 	$.each(cpicker_data,function(k,v){
 		if (
-			v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(term.toLowerCase()) !== -1
+			(
+				( !exact && v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(term.toLowerCase()) !== -1 )
+				||
+				( exact && v === term )
+			)
 			&& $("button[cpicker_data-k='" + k + "']").length === 0
 			) {
 			found++;
@@ -398,7 +402,7 @@ function cpickerMoreResults(area,notShownCount) {
 }
 
 function cpickerFindResult(code,area) {
-	cpickerDoSearch(cpicker_data[code],area);
+	cpickerDoSearch(cpicker_data[code],area,true);
 	$("#" + area).find("[cpicker_data-k='"+code+"']").click();
 }
 
