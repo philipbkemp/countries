@@ -287,23 +287,23 @@ function bootstrapMe() {
 
 	switch(cpicker_prop.bootstrap) {
 		case 4:
-			left = "ml-1";
+			left = "ml-2";
 			right = "mr-1";
 			break;
 		case 5:
-			left = "ms-1";
+			left = "ms-2";
 			right = "me-1";
 			break;
 	}
 
 	if ( cpicker_prop.btnClass === "" ) {
-		cpicker_prop.btnClass = "btn btn-outline-primary mb-1" + right;
+		cpicker_prop.btnClass = "btn btn-outline-primary mb-1 " + right;
 	}
 	if ( cpicker_prop.btnSelectedClass === "" ) {
-		cpicker_prop.btnSelectedClass = "btn btn-primary mb-1" + right;
+		cpicker_prop.btnSelectedClass = "btn btn-primary mb-1 " + right;
 	}
 	if ( cpicker_prop.clearClass === "" ) {
-		cpicker_prop.clearClass = "badge badge-secondary p2" + left;
+		cpicker_prop.clearClass = "badge badge-secondary p2 " + left;
 	}
 	if ( cpicker_prop.imgClass === "" ) {
 		cpicker_prop.imgClass = "" + right;
