@@ -39,11 +39,12 @@ If you want to allow multiple selection, the ```-pickarea``` DIV element should 
 
 | Property          | Default                                   | Description |
 | ---               | ---                                       | --- |
-| btnClass          | ```"btn btn-outline-primary mr-1 mb-1"``` | What classes an unselected button would use |
-| btnSelectedClass  | ```"btn btn-primary mr-1 mb-1"```         | What classes the selected button would use |
-| clearClass        | ```"ml-2 badge badge-secondary p-2"```    | What styles to apply to the clear SPAN |
+| bootstrap         | ```4```                                   | Defines which version of Bootstrap classes to use<br />Specifically to define right/left margins |
+| btnClass          | ```""``` | What classes an unselected button would use<br />```btn btn-outline-primary mb-1 {right margin 1}``` |
+| btnSelectedClass  | ```""```         | What classes the selected button would use<br />```btn btn-primary mb-1 {right margin 1}``` |
+| clearClass        | ```""```    | What styles to apply to the clear SPAN<br />```badge badge-secondary p-2 {left margin 2}``` |
 | clearHtml         | ```"X"```                                 | What text or markup should be used for the clear SPAN |
-| imgClass          | ```"mr-1"```                              | What classes are attached to the flag image |
+| imgClass          | ```""```                              | What classes are attached to the flag image<br />``` {right margin 1}``` |
 | imgHeight         | ```"26px"```                              | How tall the flag images should be |
 | imgRoot           | ```""```                                  | Root folder to make sure flag images are found |
 | maxResults | ```3``` | Maximum number of results to display
