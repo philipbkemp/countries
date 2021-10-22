@@ -259,11 +259,12 @@ var cpicker_data = {
 };
 
 var cpicker_prop = {
-	btnClass: "btn btn-outline-primary mr-1 mb-1",
-	btnSelectedClass: "btn btn-primary mr-1 mb-1",
-	clearClass: "ml-2 badge badge-secondary p-2",
+	bootstrap: 4,
+	btnClass: "",
+	btnSelectedClass: "",
+	clearClass: "",
 	clearHtml: "X",
-	imgClass: "mr-1",
+	imgClass: "",
 	imgHeight: "20px",
 	imgRoot: "",
 	maxResults: 3,
@@ -279,7 +280,40 @@ var cpicker_prop = {
 	showMoreText: "+{count}"
 };
 
+function bootstrapMe() {
+
+	right = "";
+	left = "";
+
+	switch(cpicker_prop.bootstrap) {
+		case 4:
+			left = "ml-1";
+			right = "mr-1";
+			break;
+		case 5:
+			left = "ms-1";
+			right = "me-1";
+			break;
+	}
+
+	if ( cpicker_prop.btnClass === "" ) {
+		cpicker_prop.btnClass = "btn btn-outline-primary mb-1" + right;
+	}
+	if ( cpicker_prop.btnSelectedClass === "" ) {
+		cpicker_prop.btnSelectedClass = "btn btn-primary mb-1" + right;
+	}
+	if ( cpicker_prop.clearClass === "" ) {
+		cpicker_prop.clearClass = "badge badge-secondary p2" + left;
+	}
+	if ( cpicker_prop.imgClass === "" ) {
+		cpicker_prop.imgClass = "" + right;
+	}
+
+}
+
 $(document).ready(function(){
+
+	bootstrapMe();
 	
 	$.each($(cpicker_prop.selector),function(k,v){
 		var id = $(v).attr("id");
